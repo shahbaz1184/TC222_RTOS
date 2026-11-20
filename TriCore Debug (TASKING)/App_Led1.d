@@ -74,6 +74,10 @@ App_Led1.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\deprecated_defi
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\deprecated_definitions.h" :
 App_Led1.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\portable\\Tasking\\TC3\portmacro.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\portable\\Tasking\\TC3\portmacro.h" :
+App_Led1.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h" :
+App_Led1.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h" :
 App_Led1.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\mpu_wrappers.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\mpu_wrappers.h" :
 App_Led1.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\task.h"

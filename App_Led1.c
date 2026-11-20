@@ -76,6 +76,7 @@ void task_app_led1(void *arg)
 void task_app_led2(void *arg)
 {
 //    app_init();
+    vTaskDelay(pdMS_TO_TICKS(500));
 
     while (1)
     {

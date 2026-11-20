@@ -41,6 +41,7 @@
 #include "IfxSrc_reg.h"
 #include "IfxScuWdt.h"
 #include "IfxSrc_cfg.h"
+#include "IfxStm.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -62,8 +63,13 @@ extern volatile unsigned long * pxCurrentTCB;
 
 /* Register defines */
 static volatile uint32_t *const pxStm = configSTM;
-static volatile uint32_t *const pxStmSrc = configSTM_SRC;
-static volatile uint32_t *const pxContextSrc = configCONTEXT_SRC;
+//static volatile uint32_t *const pxStmSrc = configSTM_SRC;
+//static volatile uint32_t *const pxContextSrc = &MODULE_SRC.GPSR.GPSR[0].SR0;//configCONTEXT_SRC;
+/* At the top of port.c (around line 67 & 99) */
+static volatile Ifx_SRC_SRCR *const pxStmSrc     = &MODULE_SRC.STM.STM[0].SR0;
+static volatile Ifx_SRC_SRCR *const pxContextSrc = &MODULE_SRC.GPSR.GPSR[0].SR0;
+
+
 #define portSTM_TIM0                 0x10
 #define portSTM_CMP0                 0x30
 #define portSTM_COMCON               0x38
@@ -92,6 +98,9 @@ volatile Ifx_STM *stm = &MODULE_STM0;
 //volatile Ifx_STM_CMP *stmCmp = &STM0_CMP0;
 //volatile Ifx_STM_ISCR *stmISCR = &STM0_ISCR;
 
+static uint32_t ulTickCount = 0;
+
+
 Ifx_SRC_SRCR *src = &MODULE_SRC.STM.STM[0];
 
 /* FreeRTOS required functions */
@@ -106,8 +115,10 @@ BaseType_t xPortStartScheduler( void )
 
 void vPortEndScheduler()
 {
-    pxStmSrc[ 0 ] &= ~( 1 << portSRC_SRCR_SRE_OFF );
-    pxContextSrc[ 0 ] &= ~( 1 << portSRC_SRCR_SRE_OFF );
+//    pxStmSrc[ 0 ] &= ~( 1 << portSRC_SRCR_SRE_OFF );
+//    pxContextSrc[ 0 ] &= ~( 1 << portSRC_SRCR_SRE_OFF );
+    MODULE_SRC.STM.STM[0].SR0.B.SRE = 0; // or &MODULE_SRC.STM.STM.SR0
+    pxContextSrc->B.SRE = 0;
 }
 
 StackType_t *pxPortInitialiseStack( StackType_t * pxTopOfStack,
@@ -195,6 +206,65 @@ vPortSystemTickHandler()
     unsigned long ulSavedInterruptMask;
     BaseType_t xYieldRequired;
 
+    /* 1. Schedule next tick with catch-up protection */
+    uint32_t ulNow = MODULE_STM0.TIM0.U;
+    do
+    {
+        MODULE_STM0.CMP[0].U += ulTickCount;
+    }
+    while( ( int32_t ) ( MODULE_STM0.CMP[0].U - ulNow ) <= 0 );
+
+    /* 2. Clear interrupt flag */
+    MODULE_STM0.ISCR.B.CMP0IRR = 1;
+
+    /* 3. Increment RTOS tick */
+    ulSavedInterruptMask = portSET_INTERRUPT_MASK_FROM_ISR();
+    {
+        xYieldRequired = xTaskIncrementTick();
+    }
+    portCLEAR_INTERRUPT_MASK_FROM_ISR( ulSavedInterruptMask );
+
+    if( xYieldRequired != pdFALSE )
+    {
+        portYIELD_FROM_ISR( xYieldRequired );
+    }
+    /*--------------------------------------*/
+#if 0
+    testTick++;
+
+    unsigned long ulSavedInterruptMask;
+    BaseType_t xYieldRequired;
+
+    /* 1. Schedule next tick */
+    MODULE_STM0.CMP[ 0 ].U += ulTickCount;
+
+    /* 2. Clear interrupt flag */
+    MODULE_STM0.ISCR.B.CMP0IRR = 1;
+
+    /* 3. Increment RTOS tick inside ISR critical section */
+    ulSavedInterruptMask = portSET_INTERRUPT_MASK_FROM_ISR();
+    {
+        xYieldRequired = xTaskIncrementTick();
+    }
+    portCLEAR_INTERRUPT_MASK_FROM_ISR( ulSavedInterruptMask );
+
+    if( xYieldRequired != pdFALSE )
+    {
+        portYIELD_FROM_ISR( xYieldRequired );
+    }
+#endif
+}
+
+#if 0
+volatile uint32 testTick = 0;
+void __interrupt( configTIMER_INTERRUPT_PRIORITY ) __vector_table( configCPU_NR )
+vPortSystemTickHandler()
+{
+    testTick++;
+
+    unsigned long ulSavedInterruptMask;
+    BaseType_t xYieldRequired;
+
     /* Increment compare value by tick count */
 //    pxStm[ portSTM_CMP0 >> 2 ] = pxStm[ portSTM_CMP0 >> 2 ] + portTICK_COUNT;
 //    pxStm[ portSTM_ISCR >> 2 ] |= ( 1 << portSTM_ISCR_CMP0IRR_OFF );
@@ -231,6 +301,7 @@ uint8 xyz =10;
         portYIELD_FROM_ISR( xYieldRequired );   // Trigger context switch interrupt
     }
 }
+#endif
 
 void __attribute__( ( noinline ) ) vPortSyscallYield( void );
 
@@ -255,52 +326,70 @@ vPortSyscallHandler( unsigned char id )
 
 void vPortInitTickTimer()
 {
-//    pxStm[ portSTM_COMCON >> 2 ] =
-//        ( 0 << portSTM_CMCON_MSTART0_OFF ) | ( 31 << portSTM_CMCON_MSIZE0_OFF );
-//    pxStm[ portSTM_ICR >> 2 ] &= ~( 1 << portSTM_ICR_CMP0OS_OFF );
-//    pxStmSrc[ 0 ] = ( ( configCPU_NR > 0 ?
-//                        configCPU_NR + 1 : configCPU_NR ) << portSRC_SRCR_TOS_OFF ) |
-//                    ( ( configTIMER_INTERRUPT_PRIORITY ) << portSRC_SRCR_SRPN_OFF );
-//    pxStmSrc[ 0 ] |= ( 1 << portSRC_SRCR_SRE_OFF );
-//    pxStm[ portSTM_CMP0 >> 2 ] = pxStm[ portSTM_TIM0 >> 2 ];
-//    pxStm[ portSTM_ISCR >> 2 ] |= ( 1 << portSTM_ISCR_CMP0IRR_OFF );
-//    pxStm[ portSTM_ICR >> 2 ] |= ( 1 << portSTM_ICR_CMP0EN_OFF );
-//    pxStm[ portSTM_CMP0 >> 2 ] = pxStm[ portSTM_TIM0 >> 2 ] + portTICK_COUNT;
-    #if configTICK_STM_DEBUG != 0
-        pxStm[ portSTM_OCS >> 2 ] = 0x12000000;
-    #endif
 
-        uint32 now;
+#if configSTM_DEBUG != 0
+    MODULE_STM0.OCS.U = 0x12000000UL;
+#endif
 
-        /* Enable STM */
-        uint16 password = IfxScuWdt_getCpuWatchdogPassword();
-        IfxScuWdt_clearCpuEndinit(password);
+//        uint32 now;
+//
+//        /* Enable STM */
+//        uint16 password = IfxScuWdt_getCpuWatchdogPassword();
+//        IfxScuWdt_clearCpuEndinit(password);
+//        MODULE_STM0.CLC.B.DISR = 0;
+//        IfxScuWdt_setCpuEndinit(password);
+//
+//        /* Configure compare window */
+//        MODULE_STM0.CMCON.B.MSTART0 = 6;
+//        MODULE_STM0.CMCON.B.MSIZE0  = 14;
+//
+//        /* Disable interrupt */
+//        MODULE_STM0.ICR.U = 0;
+//
+//        /* Clear interrupt */
+//        MODULE_STM0.ISCR.B.CMP0IRR = 1;
+//
+//        /* Get time */
+//        now = MODULE_STM0.TIM0.U;
+//
+//        /* Set compare */
+//        MODULE_STM0.CMP[0].U = now + portTICK_COUNT;
+//
+//        /* Enable interrupt */
+//        MODULE_STM0.ICR.B.CMP0OS = 0;
+//        MODULE_STM0.ICR.B.CMP0EN = 1;
+//
+//        /* Configure SRC */
+//        Ifx_SRC_SRCR *src = &MODULE_SRC.STM.STM[0];
+//
+//        src->B.SRPN = configTIMER_INTERRUPT_PRIORITY;
+//        src->B.TOS  = IfxSrc_Tos_cpu0;
+//        src->B.SRE  = 1;
+
+        /*-----------------------------------------*/
+        uint16_t password = IfxScuWdt_getCpuWatchdogPassword();
+        IfxScuWdt_clearCpuEndinit( password );
         MODULE_STM0.CLC.B.DISR = 0;
-        IfxScuWdt_setCpuEndinit(password);
+        IfxScuWdt_setCpuEndinit( password );
 
-        /* Configure compare window */
-        MODULE_STM0.CMCON.B.MSTART0 = 6;
-        MODULE_STM0.CMCON.B.MSIZE0  = 14;
+        /* Compare full 32 bits [31:0] of TIM0 */
+        MODULE_STM0.CMCON.B.MSTART0 = 0;
+        MODULE_STM0.CMCON.B.MSIZE0  = 31;
 
-        /* Disable interrupt */
+        /* Clear and disable comparator 0 interrupt before setup */
         MODULE_STM0.ICR.U = 0;
-
-        /* Clear interrupt */
         MODULE_STM0.ISCR.B.CMP0IRR = 1;
 
-        /* Get time */
-        now = MODULE_STM0.TIM0.U;
+        /* Calculate exact 1 ms ticks from actual STM0 clock frequency */
+        ulTickCount = ( uint32_t ) IfxStm_getTicksFromMilliseconds( &MODULE_STM0, 1 );
+        MODULE_STM0.CMP[ 0 ].U = MODULE_STM0.TIM0.U + ulTickCount;
 
-        /* Set compare */
-        MODULE_STM0.CMP[0].U = now + portTICK_COUNT;
-
-        /* Enable interrupt */
+        /* Enable comparator 0 interrupt on service request 0 */
         MODULE_STM0.ICR.B.CMP0OS = 0;
         MODULE_STM0.ICR.B.CMP0EN = 1;
 
-        /* Configure SRC */
-        Ifx_SRC_SRCR *src = &MODULE_SRC.STM.STM[0];
-
+        /* Configure SRC_STM0SR0 */
+        Ifx_SRC_SRCR *src = &MODULE_SRC.STM.STM[ 0 ];
         src->B.SRPN = configTIMER_INTERRUPT_PRIORITY;
         src->B.TOS  = IfxSrc_Tos_cpu0;
         src->B.SRE  = 1;
@@ -308,11 +397,15 @@ void vPortInitTickTimer()
 
 void vPortInitContextSrc()
 {
-    pxContextSrc[ 0 ] =
-        ( ( configCPU_NR > 0 ?
-            configCPU_NR + 1 : configCPU_NR ) << portSRC_SRCR_TOS_OFF ) |
-        ( ( configCONTEXT_INTERRUPT_PRIORITY ) << portSRC_SRCR_SRPN_OFF );
-    pxContextSrc[ 0 ] |= ( 1 << portSRC_SRCR_SRE_OFF );
+//    pxContextSrc[ 0 ] =
+//        ( ( configCPU_NR > 0 ?
+//            configCPU_NR + 1 : configCPU_NR ) << portSRC_SRCR_TOS_OFF ) |
+//        ( ( configCONTEXT_INTERRUPT_PRIORITY ) << portSRC_SRCR_SRPN_OFF );
+//    pxContextSrc[ 0 ] |= ( 1 << portSRC_SRCR_SRE_OFF );
+
+    pxContextSrc->B.SRPN = configCONTEXT_INTERRUPT_PRIORITY;
+    pxContextSrc->B.TOS  = IfxSrc_Tos_cpu0;
+    pxContextSrc->B.SRE  = 1;
 }
 
 void vPortStartFirstTask()

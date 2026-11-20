@@ -63,10 +63,10 @@
 #define configCPU_NR                        0
 #define configPROVIDE_SYSCALL_TRAP          0
 #define configSYSCALL_CALL_DEPTH            2
-#define configSTM                           ( ( uint32_t * ) (0xF0001000 + configCPU_NR*0x100 ) )
-#define configSTM_SRC                       ( ( uint32_t * ) (0xF0038300 + configCPU_NR*0x8) )
-#define configSTM_CLOCK_HZ                  ( 133000000 )
+#define configSTM                           ( ( uint32_t * ) (0xF0000000))//(0xF0001000 + configCPU_NR*0x100 ) )
+#define configSTM_SRC                       ( ( uint32_t * ) (0xF0038490))//(0xF0038300 + configCPU_NR*0x8) )
+#define configSTM_CLOCK_HZ                  (66500000UL)//( 133000000 )
 #define configSTM_DEBUG                     ( 1 )
-#define configCONTEXT_SRC                   ( ( uint32_t * ) 0xF0038990 )
+#define configCONTEXT_SRC                   ( ( uint32_t * ) 0xF0038400)//0xF0038990 )
 
 #endif /* FREERTOS_CONFIG_H */

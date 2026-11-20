@@ -20,6 +20,12 @@ stream_buffer.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\deprecated
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\deprecated_definitions.h" :
 stream_buffer.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\portable\\Tasking\\TC3\portmacro.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\portable\\Tasking\\TC3\portmacro.h" :
+stream_buffer.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h" :
+stream_buffer.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h" :
+stream_buffer.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\Ifx_TypesReg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\Ifx_TypesReg.h" :
 stream_buffer.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\mpu_wrappers.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\mpu_wrappers.h" :
 stream_buffer.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\task.h"

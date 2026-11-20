@@ -28,6 +28,7 @@
 "-Wl-oRTOS_Karnel.hex:IHEX"
 "iSTM/istm.o"
 "iLED/iLed.o"
+"Scr/App_Schedular.o"
 "OS/FreeRTOS/portable/Tasking/TC3/port.o"
 "OS/FreeRTOS/portable/MemMang/heap_1.o"
 "OS/FreeRTOS/croutine.o"

@@ -104,3 +104,5 @@ Cpu0_Main.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\task.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\task.h" :
 Cpu0_Main.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\list.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\list.h" :
+Cpu0_Main.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Scr\App_Schedular.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Scr\App_Schedular.h" :

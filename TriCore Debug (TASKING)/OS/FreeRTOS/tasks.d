@@ -22,6 +22,12 @@ tasks.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\deprecated_definit
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\deprecated_definitions.h" :
 tasks.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\portable\\Tasking\\TC3\portmacro.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\portable\\Tasking\\TC3\portmacro.h" :
+tasks.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h" :
+tasks.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h" :
+tasks.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\Ifx_TypesReg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\Ifx_TypesReg.h" :
 tasks.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\mpu_wrappers.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\mpu_wrappers.h" :
 tasks.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\task.h"

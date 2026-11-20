@@ -31,7 +31,7 @@
 #include "App_Config.h"
 #include "FreeRTOS.h"
 #include "task.h"
-//#define CSA_SIZE  128
+#include "App_Schedular.h"
 
 IFX_ALIGN(4) IfxCpu_syncEvent g_cpuSyncEvent = 0;
 
@@ -104,10 +104,13 @@ void core0_main(void)
     LedON();
     // Initialize CSA
     /* Create LED1 app task */
-    xTaskCreate(task_app_led1, "APP LED1", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+//    xTaskCreate(task_app_led1, "APP LED1", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
 
     /* Create LED2 app task */
-    xTaskCreate(task_app_led2, "APP LED2", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+//    xTaskCreate(task_app_led2, "APP LED2", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+
+    /* Initialize the main task table */
+    App_Scheduler_Init();
 
     /* Start the scheduler */
     vTaskStartScheduler();

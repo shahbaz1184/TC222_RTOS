@@ -1,5 +1,5 @@
 /**********************************************************************************************************************
- * \file sehedular.c
+ * \file App_Schedular.c
  * \copyright Copyright (C) Infineon Technologies AG 2019
  * 
  * Use of this file is subject to the terms of use agreed between (i) you or the company in which ordinary course of 
@@ -29,16 +29,25 @@
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
-#include "stdlib.h"
-#include "Task.h"
+#include "stddef.h"
+#include "App_Schedular.h"
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
-#define     MAX_PRIORITY    5
+
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
+/* Optional: Overrun / Execution Counters for Debugging */
+typedef struct
+{
+    uint32_t count_1ms;
+    uint32_t count_10ms;
+    uint32_t count_100ms;
+    uint32_t count_1000ms;
+} App_SchedStats_t;
 
+volatile App_SchedStats_t g_SchedStats = { 0 };
 /*********************************************************************************************************************/
 /*--------------------------------------------Private Variables/Constants--------------------------------------------*/
 /*********************************************************************************************************************/
@@ -52,41 +61,104 @@
 /*********************************************************************************************************************/
 
 
-//TCB_t *currentTask;
-//TCB_t *readyList[MAX_PRIORITY];
+/* ============================================================================
+ * 1 ms Cyclic Task (Highest Priority)
+ * ============================================================================ */
+static void vTask_1ms( void *pvParameters )
+{
+    ( void ) pvParameters;
+    TickType_t xLastWakeTime = xTaskGetTickCount();
+    const TickType_t xFrequency = pdMS_TO_TICKS( TASK_PERIOD_1MS );
 
-//TCB_t* scheduler_select_next()
-//{
-//    for(int p = MAX_PRIORITY-1; p >= 0; p--)
-//    {
-//        if(readyList[p] != NULL)
-//            return readyList[p];
-//    }
-//    return idleTask;
-//}
+    for( ; ; )
+    {
+        /* Execute 1 ms CAN / control runnables sequentially */
+//        Runnable_Task1();
+//        Runnable_Task2();
+//        Runnable_Task3();
 
+        g_SchedStats.count_1ms++;
 
+        /* Wait until exact next 1 ms boundary */
+        vTaskDelayUntil( &xLastWakeTime, xFrequency );
+    }
+}
 
+/* ============================================================================
+ * 10 ms Cyclic Task
+ * ============================================================================ */
+static void vTask_10ms( void *pvParameters )
+{
+    ( void ) pvParameters;
+    TickType_t xLastWakeTime = xTaskGetTickCount();
+    const TickType_t xFrequency = pdMS_TO_TICKS( TASK_PERIOD_10MS );
 
+    for( ; ; )
+    {
+//        Runnable_Task4();
+//        Runnable_Task5();
 
-//void context_switch()
-//{
-//    currentTask = scheduler_select_next();
-//
-//    // Load CSA pointer of next task
-//    __mtcr(PCXI, currentTask->csa);
-//}
+        g_SchedStats.count_10ms++;
 
+        vTaskDelayUntil( &xLastWakeTime, xFrequency );
+    }
+}
 
+/* ============================================================================
+ * 100 ms Cyclic Task
+ * ============================================================================ */
+static void vTask_100ms( void *pvParameters )
+{
+    ( void ) pvParameters;
+    TickType_t xLastWakeTime = xTaskGetTickCount();
+    const TickType_t xFrequency = pdMS_TO_TICKS( TASK_PERIOD_100MS );
 
+    for( ; ; )
+    {
+//        Runnable_Task6();
 
+        g_SchedStats.count_100ms++;
 
-//void osDelay(uint32_t ticks)
-//{
-//    currentTask->delay = tick + ticks;
-//    currentTask->state = BLOCKED;
-//
-//    osYield();
-//}
+        vTaskDelayUntil( &xLastWakeTime, xFrequency );
+    }
+}
 
+/* ============================================================================
+ * 1000 ms (1 sec) Cyclic Task
+ * ============================================================================ */
+static void vTask_1000ms( void *pvParameters )
+{
+    ( void ) pvParameters;
+    TickType_t xLastWakeTime = xTaskGetTickCount();
+    const TickType_t xFrequency = pdMS_TO_TICKS( TASK_PERIOD_1000MS );
 
+    for( ; ; )
+    {
+//        Runnable_Task7();
+//        Runnable_Task8();
+
+        g_SchedStats.count_1000ms++;
+
+        vTaskDelayUntil( &xLastWakeTime, xFrequency );
+    }
+}
+
+/* ============================================================================
+ * Create All Cyclic Tasks
+ * ============================================================================ */
+void App_Scheduler_Init( void )
+{
+    BaseType_t status;
+
+    status = xTaskCreate( vTask_1ms,    "Task_1ms",    TASK_STACK_1MS,    NULL, TASK_PRIO_1MS,    NULL );
+    configASSERT( status == pdPASS );
+
+    status = xTaskCreate( vTask_10ms,   "Task_10ms",   TASK_STACK_10MS,   NULL, TASK_PRIO_10MS,   NULL );
+    configASSERT( status == pdPASS );
+
+    status = xTaskCreate( vTask_100ms,  "Task_100ms",  TASK_STACK_100MS,  NULL, TASK_PRIO_100MS,  NULL );
+    configASSERT( status == pdPASS );
+
+    status = xTaskCreate( vTask_1000ms, "Task_1000ms", TASK_STACK_1000MS, NULL, TASK_PRIO_1000MS, NULL );
+    configASSERT( status == pdPASS );
+}

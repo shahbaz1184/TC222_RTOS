@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include iSTM/subdir.mk
 -include iLED/subdir.mk
+-include Scr/subdir.mk
 -include OS/FreeRTOS/portable/Tasking/TC3/subdir.mk
 -include OS/FreeRTOS/portable/MemMang/subdir.mk
 -include OS/FreeRTOS/subdir.mk

@@ -18,6 +18,12 @@ istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\deprecated_definiti
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\deprecated_definitions.h" :
 istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\portable\\Tasking\\TC3\portmacro.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\portable\\Tasking\\TC3\portmacro.h" :
+istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h" :
+istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h" :
+istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\Ifx_TypesReg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\Ifx_TypesReg.h" :
 istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\mpu_wrappers.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\mpu_wrappers.h" :
 istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\task.h"
@@ -48,8 +54,6 @@ istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxStm
 "D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxStm_reg.h" :
 istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxStm_regdef.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxStm_regdef.h" :
-istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\Ifx_TypesReg.h"
-"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\Ifx_TypesReg.h" :
 istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\Ifx_Types.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\Ifx_Types.h" :
 istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Scu\Std\IfxScuCcu.h"
@@ -80,10 +84,6 @@ istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCpu
 "D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCpu_reg.h" :
 istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCpu_regdef.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCpu_regdef.h" :
-istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h"
-"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_reg.h" :
-istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h"
-"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxSrc_regdef.h" :
 istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Service\\CpuGeneric\_Utilities\Ifx_Assert.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Service\\CpuGeneric\_Utilities\Ifx_Assert.h" :
 istm.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\Ifx_Types.h"

@@ -43,6 +43,7 @@
 #endif
 
 #include "FreeRTOSConfig.h"
+#include "IfxSrc_reg.h"
 
 #define portCPU_PSW              0xFE04
 #define portCPU_PSW_IS_OFF       ( 9 )
@@ -114,17 +115,27 @@ extern void vPortExitCritical( void );
     #define configYIELD_SYSCALL_ID    0
 #endif
 
-#define portYIELD()    __syscall( configYIELD_SYSCALL_ID )
+#define portYIELD()    portYIELD_FROM_ISR( 1 )//__syscall( configYIELD_SYSCALL_ID )
 
-#define portYIELD_FROM_ISR( xHigherPriorityTaskWoken )                                                                                \
-    {                                                                                                                                 \
-        const uint32_t xTrigger = ( ( *configCONTEXT_SRC >> portSRC_SRCR_SRR_OFF ) & 0x1 ) != 1 && ( xHigherPriorityTaskWoken != 0 ); \
-        *configCONTEXT_SRC |= ( xTrigger << portSRC_SRCR_SETR_OFF );                                                                  \
-                                                                                                                                      \
-        /* Wait until write request completes to trigger IRQ */                                                                       \
-        __dsync();                                                                                                                    \
-        __isync();                                                                                                                    \
+#define portYIELD_FROM_ISR( xHigherPriorityTaskWoken )                                       \
+    {                                                                                        \
+        if( ( xHigherPriorityTaskWoken != 0 ) && ( MODULE_SRC.GPSR.GPSR[0].SR0.B.SRR == 0 ) ) \
+        {                                                                                    \
+            MODULE_SRC.GPSR.GPSR[0].SR0.B.SETR = 1;                                          \
+            __dsync();                                                                       \
+            __isync();                                                                       \
+        }                                                                                    \
     }
+
+//#define portYIELD_FROM_ISR( xHigherPriorityTaskWoken )                                                                                \
+//    {                                                                                                                                 \
+//        const uint32_t xTrigger = ( ( *configCONTEXT_SRC >> portSRC_SRCR_SRR_OFF ) & 0x1 ) != 1 && ( xHigherPriorityTaskWoken != 0 ); \
+//        *configCONTEXT_SRC |= ( xTrigger << portSRC_SRCR_SETR_OFF );                                                                  \
+//                                                                                                                                      \
+//        /* Wait until write request completes to trigger IRQ */                                                                       \
+//        __dsync();                                                                                                                    \
+//        __isync();                                                                                                                    \
+//    }
 
 
 #ifndef configUSE_PORT_OPTIMISED_TASK_SELECTION

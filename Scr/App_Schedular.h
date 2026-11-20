@@ -1,5 +1,5 @@
 /**********************************************************************************************************************
- * \file Task.h
+ * \file App_Schedular.h
  * \copyright Copyright (C) Infineon Technologies AG 2019
  * 
  * Use of this file is subject to the terms of use agreed between (i) you or the company in which ordinary course of 
@@ -25,76 +25,68 @@
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
 
-#ifndef SOURCE_TASK_H_
-#define SOURCE_TASK_H_
+#ifndef SCR_APP_SCHEDULAR_H_
+#define SCR_APP_SCHEDULAR_H_
 
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
-#include "Platform_Types.h"
-#include "Ifx_Types.h"
+#include "FreeRTOS.h"
+#include "task.h"
 /*********************************************************************************************************************/
 /*------------------------------------------------------Macros-------------------------------------------------------*/
 /*********************************************************************************************************************/
-#define     TASK_PRIORITY   1       //Add number for higher priority
-//#define     MAX_TASKS       2
-//#define     STACK_SIZE      512
+/* Cyclic Task Periods (in milliseconds) */
+#define TASK_PERIOD_1MS         ( 1U )
+#define TASK_PERIOD_10MS        ( 10U )
+#define TASK_PERIOD_100MS       ( 100U )
+#define TASK_PERIOD_1000MS      ( 1000U )
+
+/* * Rate Monotonic Priorities (Higher number = Higher priority)
+ * Note: Keep below configTIMER_TASK_PRIORITY (9) or adjust FreeRTOSConfig.h
+ *
+ */
+#define TASK_PRIO_1MS           ( 6U )
+#define TASK_PRIO_10MS          ( 5U )
+#define TASK_PRIO_100MS         ( 4U )
+#define TASK_PRIO_1000MS        ( 3U )
+
+/* Task Stack Sizes (in 32-bit words) */
+#define TASK_STACK_1MS          ( 256U )
+#define TASK_STACK_10MS         ( 256U )
+#define TASK_STACK_100MS        ( 256U )
+#define TASK_STACK_1000MS       ( 256U )
+
 /*********************************************************************************************************************/
 /*-------------------------------------------------Global variables--------------------------------------------------*/
 /*********************************************************************************************************************/
 
-
-#define MAX_TASKS       8
-#define STACK_SIZE      512
-#define CSA_SIZE        64      /* number of CSAs in pool — adjust to your RAM budget */
-
-typedef struct {
-    uint32 pcxi;
-    uint16 priority;
-    uint8  used;
-} Task;
-
-void   osCreateTask(void (*Func)(void), uint16 priority);
-void   osStart(void);
-void   osSwitchContext(uint16 id);
-void   getTwoCSA(uint32 **lower, uint32 **upper);
-uint32 debugCheckUL(void);   /* run once, see explanation below */
 /*********************************************************************************************************************/
 /*-------------------------------------------------Data Structures---------------------------------------------------*/
 /*********************************************************************************************************************/
-//#define TASK_BEGIN() switch(taskList[currentTask].state) { case 0:
-//#define TASK_YIELD() \
-//    do { \
-//        taskList[currentTask].state = __LINE__; \
-//        osYield(); \
-//        return; \
-//        case __LINE__:; \
-//    } while (0)
-//
-//#define TASK_END() }
-//
-//
-//#define TASK_DELAY(ticks) \
-//    do { \
-//        taskList[currentTask].delayUntil = osTick + (ticks); \
-//        taskList[currentTask].taskState = TASK_BLOCKED; \
-//        TASK_YIELD(); \
-//    } while (0)
-
-
+ 
 /*********************************************************************************************************************/
 /*--------------------------------------------Private Variables/Constants--------------------------------------------*/
 /*********************************************************************************************************************/
-//extern TCB_t taskList[MAX_TASKS];
-//extern uint16 taskCount;
-//extern uint8 currentTask;
-//extern volatile uint32 osTick;
-//extern uint32 basePcxi;
+
 /*********************************************************************************************************************/
 /*------------------------------------------------Function Prototypes------------------------------------------------*/
 /*********************************************************************************************************************/
-//void initTask(TCB_t *tcb, void (*taskFunc)(void),uint32 *stackTop);
-//void osSwitchContext(uint16 id);
+
+/* ============================================================================
+ * Public API
+ * ============================================================================ */
+void App_Scheduler_Init( void );
+
+/* Application Runnable Prototypes (Implement in your CAN / App modules) */
+extern void Runnable_Task1( void );
+extern void Runnable_Task2( void );
+extern void Runnable_Task3( void );
+extern void Runnable_Task4( void );
+extern void Runnable_Task5( void );
+extern void Runnable_Task6( void );
+extern void Runnable_Task7( void );
+extern void Runnable_Task8( void );
 
 
-#endif /* SOURCE_TASK_H_ */
+#endif /* SCR_APP_SCHEDULAR_H_ */

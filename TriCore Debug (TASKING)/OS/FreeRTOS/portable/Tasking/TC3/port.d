@@ -56,6 +56,58 @@ port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\I
 "D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\Ifx_Types.h" :
 port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\\_Impl\IfxSrc_cfg.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\\_Impl\IfxSrc_cfg.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\\Stm\\Std\IfxStm.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\\Stm\\Std\IfxStm.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_Impl\IfxStm_cfg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_Impl\IfxStm_cfg.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu_Intrinsics.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu_Intrinsics.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Scu\Std\IfxScuCcu.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Scu\Std\IfxScuCcu.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Scu\Std\IfxScuWdt.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Scu\Std\IfxScuWdt.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_Impl\IfxCpu_cfg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_Impl\IfxCpu_cfg.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu_Intrinsics.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu_Intrinsics.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCpu_reg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCpu_reg.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCpu_regdef.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCpu_regdef.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Service\\CpuGeneric\_Utilities\Ifx_Assert.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Service\\CpuGeneric\_Utilities\Ifx_Assert.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Scu\Std\IfxScuCcu.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Scu\Std\IfxScuCcu.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxFlash_reg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxFlash_reg.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxFlash_regdef.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxFlash_regdef.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_PinMap\IfxScu_PinMap.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_PinMap\IfxScu_PinMap.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Port\Std\IfxPort.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Port\Std\IfxPort.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_Impl\IfxPort_cfg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_Impl\IfxPort_cfg.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu_Intrinsics.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu_Intrinsics.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxPort_reg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxPort_reg.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxPort_regdef.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxPort_regdef.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_PinMap\Ifx_PinMap.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_PinMap\Ifx_PinMap.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Src\Std\IfxSrc.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Src\Std\IfxSrc.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_Impl\IfxSrc_cfg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\_Impl\IfxSrc_cfg.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu_Intrinsics.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\iLLD\\TC22A\\Tricore\Cpu\Std\IfxCpu_Intrinsics.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCbs_reg.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCbs_reg.h" :
+port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCbs_regdef.h"
+"D:\\RTOS_Aurix\\RTOS_kernal\\Libraries\\Infra\\Sfr\\TC22A\\_Reg\IfxCbs_regdef.h" :
 port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\FreeRTOS.h"
 "D:\\RTOS_Aurix\\RTOS_kernal\\OS\\FreeRTOS\\include\FreeRTOS.h" :
 port.o :	"D:\\RTOS_Aurix\\RTOS_kernal\\Configurations\FreeRTOSConfig.h"

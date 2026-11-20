@@ -49,6 +49,7 @@ Libraries/iLLD/TC22A/Tricore/_PinMap \
 OS/FreeRTOS \
 OS/FreeRTOS/portable/MemMang \
 OS/FreeRTOS/portable/Tasking/TC3 \
+Scr \
 iLED \
 iSTM \
 
